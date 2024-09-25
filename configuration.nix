@@ -131,10 +131,15 @@
 
       ++
 
-      (with pkgs-unstable; [
+      (with pkgs-unstable;
+        let 
+         Rstudio-with-my-packages = rstudioWrapper.override{
+           packages = with rPackages; [ tidyverse ggplot2 dplyr ]; };
+        in 
+       [
          fiji
          R
-         rstudio
+         Rstudio-with-my-packages
        ]);
 
   # Some programs need SUID wrappers, can be configured further or are
