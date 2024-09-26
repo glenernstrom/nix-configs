@@ -92,6 +92,9 @@
     ];
   };
 
+  # Enable flatpak
+  services.flatpak.enable = true;
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -114,6 +117,9 @@
         shotcut
         obs-studio
         kile
+        vscode
+        deluge
+        tailscale
         popsicle
         xournalpp
         libreoffice-qt6-fresh
@@ -153,11 +159,17 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  # Enable tailscale
+  services.tailscale.enable = true;
+
+  # Optional (default: 41641):
+  # services.tailscale.port = 12345;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ${services.tailscale.port} ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
